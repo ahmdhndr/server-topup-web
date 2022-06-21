@@ -7,11 +7,14 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 require('dotenv').config();
+const connectDB = require('./db');
 
 const dashboardRouter = require('./app/dashboard/router');
 const categoryRouter = require('./app/category/router');
+const nominalRouter = require('./app/nominal/router');
 
 const app = express();
+connectDB();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,6 +46,7 @@ app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lt
 
 app.use('/', dashboardRouter);
 app.use('/category', categoryRouter);
+app.use('/nominal', nominalRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

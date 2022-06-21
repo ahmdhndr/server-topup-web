@@ -1,8 +1,16 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.select2-container .select2-selection--single {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  height: calc(2.25rem + 2px);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-a {
-  color: #00B7FF;
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: calc(2.25rem);
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 20px;
 }

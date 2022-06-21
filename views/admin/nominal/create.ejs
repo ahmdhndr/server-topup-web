@@ -8,13 +8,13 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Kategori</h1>
+                <h1>Nominal</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-                  <li class="breadcrumb-item"><a href="/category">Kategori</a></li>
-                  <li class="breadcrumb-item active">Ubah</li>
+                  <li class="breadcrumb-item"><a href="/nominal">Nominal</a></li>
+                  <li class="breadcrumb-item active">Tambah</li>
                 </ol>
               </div>
             </div>
@@ -29,17 +29,30 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                   <div class="card-header">
-                    <h3 class="card-title">Form Ubah Kategori: <%= category.name %>
-                    </h3>
+                    <h3 class="card-title">Form Tambah Nominal</h3>
                   </div>
                   <!-- /.card-header -->
                   <!-- form start -->
-                  <form action="/category/edit/<%= category._id %>?_method=PUT" method="POST">
+                  <form action="/nominal/create" method="POST">
                     <div class="card-body">
                       <div class="form-group">
-                        <label for="name">Nama Kategori</label>
-                        <input type="text" id="name" name="name" value="<%= category.name %>" class="form-control"
-                          placeholder="Masukkan nama kategori" required autofocus>
+                        <label>Nama Koin</label>
+                        <select class="form-control select2" style="width: 100%;" name="coinName" required>
+                          <option selected disabled>Pilih koin</option>
+                          <option value="Gold">Gold</option>
+                          <option value="Diamond">Diamond</option>
+                          <option value="Jewel">Jewel</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="coinQty">Jumlah koin</label>
+                        <input type="number" id="coinQty" name="coinQty" class="form-control"
+                          placeholder="Masukkan jumlah koin" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="price">Harga</label>
+                        <input type="number" id="price" name="price" class="form-control" placeholder="Masukkan harga"
+                          required>
                       </div>
                     </div>
                     <!-- /.card-body -->
