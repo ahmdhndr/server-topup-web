@@ -62,7 +62,7 @@ module.exports = {
 
             await voucher.save();
 
-            req.flash('alertMessage', 'Voucher berhasil ditambahkan');
+            req.flash('alertMessage', 'Data voucher berhasil ditambahkan');
             req.flash('alertStatus', 'success');
             res.redirect('/voucher');
           } catch (error) {
@@ -80,7 +80,7 @@ module.exports = {
 
         await voucher.save();
 
-        req.flash('alertMessage', 'Voucher berhasil ditambahkan');
+        req.flash('alertMessage', 'Data voucher berhasil ditambahkan');
         req.flash('alertStatus', 'success');
 
         res.redirect('/voucher');
@@ -143,7 +143,7 @@ module.exports = {
               thumbnail: filename,
             });
 
-            req.flash('alertMessage', 'Voucher berhasil diubah');
+            req.flash('alertMessage', 'Data voucher berhasil diubah');
             req.flash('alertStatus', 'success');
             res.redirect('/voucher');
           } catch (error) {
@@ -159,7 +159,7 @@ module.exports = {
           nominals,
         });
 
-        req.flash('alertMessage', 'Voucher berhasil diubah');
+        req.flash('alertMessage', 'Data voucher berhasil diubah');
         req.flash('alertStatus', 'success');
 
         res.redirect('/voucher');
@@ -181,7 +181,7 @@ module.exports = {
         fs.unlinkSync(currentThumbnail);
       }
 
-      req.flash('alertMessage', 'Voucher berhasil dihapus');
+      req.flash('alertMessage', 'Data voucher berhasil dihapus');
       req.flash('alertStatus', 'success');
 
       res.redirect('/voucher');

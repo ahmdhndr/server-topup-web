@@ -8,12 +8,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Kategori</h1>
+          <h1>Bank</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-            <li class="breadcrumb-item"><a href="/category">Kategori</a></li>
+            <li class="breadcrumb-item"><a href="/bank">Bank</a></li>
             <li class="breadcrumb-item active">Tambah</li>
           </ol>
         </div>
@@ -29,16 +29,26 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Form Tambah Kategori</h3>
+              <h3 class="card-title">Form Tambah Bank</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="/category/create" method="POST">
+            <form action="/bank/create" method="POST">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="name">Nama Kategori</label>
-                  <input type="text" id="name" name="name" class="form-control"
-                    placeholder="Masukkan nama kategori" required autofocus>
+                  <label for="ownerName">Nama Pemilik</label>
+                  <input type="text" id="ownerName" name="ownerName" class="form-control"
+                    placeholder="Masukkan nama pemilik" required autofocus>
+                </div>
+                <div class="form-group">
+                  <label for="bankName">Nama Bank</label>
+                  <input type="text" id="bankName" name="bankName" class="form-control"
+                    placeholder="Masukkan nama bank" required>
+                </div>
+                <div class="form-group">
+                  <label for="accountNumb">No. Rekening</label>
+                  <input type="number" id="accountNumb" name="accountNumb" class="form-control"
+                    placeholder="Masukkan nomor rekening" required>
                 </div>
               </div>
               <!-- /.card-body -->

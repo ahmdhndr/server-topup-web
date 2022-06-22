@@ -1,9 +1,11 @@
 <% if (alert.message !='' ) { %>
-  <div class="alert alert-<%= alert.status %> alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <h5><i class="icon <%= alert.status == 'success' ? 'fas fa-check' : 'fa-solid fa-xmark' %>"></i>
-      <%= alert.status=='success' ? 'Sukses' : 'Gagal' %>
-    </h5>
-    <%= alert.message %>
+  <div class="show-alert position-absolute">
+    <div class="alert alert-<%= alert.status %> alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h5><i class="icon <%= alert.status == 'success' ? 'fas fa-check' : 'fa-solid fa-xmark' %>"></i>
+        <%= alert.status=='success' ? 'Sukses' : 'Gagal' %>
+      </h5>
+      <%= alert.message %>
+    </div>
   </div>
-  <% } %>
+<% } %>

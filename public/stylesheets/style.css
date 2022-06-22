@@ -31,3 +31,9 @@
 .preview-wrapper p {
   font-size: 1.2em;
 }
+
+.show-alert {
+  z-index: 10;
+  right: 7.5px;
+  left: 7.5px;
+}

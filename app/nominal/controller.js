@@ -33,7 +33,7 @@ module.exports = {
       const nominal = await Nominal({ coinQty, coinName, price });
       await nominal.save();
 
-      req.flash('alertMessage', 'Nominal berhasil ditambahkan');
+      req.flash('alertMessage', 'Data nominal berhasil ditambahkan');
       req.flash('alertStatus', 'success');
 
       res.redirect('/nominal');
@@ -62,7 +62,7 @@ module.exports = {
       const { coinQty, coinName, price } = req.body;
       await Nominal.findByIdAndUpdate({ _id: id }, { coinQty, coinName, price });
 
-      req.flash('alertMessage', 'Nominal berhasil diubah');
+      req.flash('alertMessage', 'Data nominal berhasil diubah');
       req.flash('alertStatus', 'success');
 
       res.redirect('/nominal');
@@ -77,7 +77,7 @@ module.exports = {
       const { id } = req.params;
       await Nominal.findByIdAndRemove({ _id: id });
 
-      req.flash('alertMessage', 'Nominal berhasil dihapus');
+      req.flash('alertMessage', 'Data nominal berhasil dihapus');
       req.flash('alertStatus', 'success');
 
       res.redirect('/nominal');

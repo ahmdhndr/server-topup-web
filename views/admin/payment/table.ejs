@@ -1,0 +1,55 @@
+<table id="example2" class="table table-bordered table-hover w-100">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Jenis Pembayaran</th>
+      <th>Bank</th>
+      <th>Status</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (let i=0; i < payment.length; i++) { %>
+      <tr>
+        <td class="align-middle">
+          <%= i + 1 %>
+        </td>
+        <td class="align-middle">
+          <%= payment[i].paymentType %>
+        </td>
+        <td class="align-middle">
+          <% payment[i].banks.forEach((bank) => { %>
+            <span class="badge badge-warning" data-toggle="tooltip" data-html="true" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>">
+              <%= bank.bankName %> - <%= bank.accountNumb %> (<%= bank.ownerName %>)
+            </span>
+          <% }) %>
+        </td>
+        <td class="align-middle">
+          <% if (payment[i].status==="Y" ) { %>
+            <span class="badge badge-success">Aktif</span>
+            <% } else { %>
+              <span class="badge badge-danger">Tidak Aktif</span>
+              <% } %>
+        </td>
+        <td class="align-middle">
+          <form action="/payment/status/<%= payment[i]._id %>?_method=PUT" method="POST" class="d-inline-block">
+            <button type="submit" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
+              title="Ubah Status">
+              <i class=" fas fa-sync"></i>
+            </button>
+          </form>
+          <form action="/payment/delete/<%= payment[i]._id %>?_method=DELETE" method="POST" class="d-inline-block">
+            <a href="/payment/edit/<%= payment[i]._id %>" class="btn btn-sm btn-info" data-toggle="tooltip"
+              data-placement="top" title="Edit Jenis Pembayaran">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+            <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top"
+              title="Hapus Jenis Pembayaran">
+              <i class="fas fa-trash"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
+      <% } %>
+  </tbody>
+</table>
