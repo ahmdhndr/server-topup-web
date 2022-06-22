@@ -4,7 +4,6 @@ const nominalSchema = mongoose.Schema({
   coinQty: {
     type: Number,
     default: 0,
-    require: [true, 'Nama kategori tidak boleh kosong'],
   },
   coinName: {
     type: String,

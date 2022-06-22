@@ -25,13 +25,13 @@
         </td>
         <td>
           <form action="/nominal/delete/<%= nominal[i]._id %>?_method=DELETE" method="POST">
-            <a href="/nominal/edit/<%= nominal[i]._id %>" class="btn btn-warning mr-1">
-              <i class="fas fa-pencil-alt mr-1"></i>
-              Ubah
+            <a href="/nominal/edit/<%= nominal[i]._id %>" class="btn btn-info btn-sm" data-toggle="tooltip"
+              data-placement="top" title="Edit Nominal">
+              <i class="fas fa-pencil-alt"></i>
             </a>
-            <button type="submit" class="btn btn-danger">
-              <i class="fas fa-trash mr-1"></i>
-              Hapus
+            <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top"
+              title="Hapus Nominal">
+              <i class="fas fa-trash"></i>
             </button>
           </form>
         </td>

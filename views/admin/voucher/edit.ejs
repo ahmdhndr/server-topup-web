@@ -1,0 +1,139 @@
+<%- include('../../partials/header'); %>
+<%- include('../../partials/navbar'); %>
+<%- include('../../partials/sidebar'); %>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Voucher</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+            <li class="breadcrumb-item"><a href="/voucher">Voucher</a></li>
+            <li class="breadcrumb-item active">Ubah</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Form Ubah Voucher: <%= voucher.name %>
+              </h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="/voucher/edit/<%= voucher._id %>?_method=PUT" method="POST"
+              enctype="multipart/form-data">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="name">Nama Game</label>
+                  <input type="text" id="name" name="name" class="form-control" value="<%= voucher.name %>"
+                    placeholder="Masukkan nama game" required autofocus>
+                </div>
+                <div class="form-group">
+                  <label>Kategori</label>
+                  <select class="form-control select2" style="width: 100%;" name="category" required>
+                    <option selected disabled>Pilih kategori</option>
+                    <% category.forEach((category)=> { %>
+                      <option value="<%= category._id %>"
+                        <% if(category._id.toString()===voucher?.category?._id.toString()) { %>
+                          selected
+                        <% } %>
+                      >
+                        <%= category.name %>
+                      </option>
+                      <% }) %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Nominal</label>
+                  <div class="select2-blue">
+                    <select class="form-control select2" multiple="multiple" style="width: 100%;" name="nominals"
+                      data-placeholder="Pilih Nominal" required>
+                      <% nominals.forEach((nominal)=> { %>
+                        <option value="<%= nominal._id %>"
+                          <% voucher.nominals.forEach((vNominal) => { %>
+                            <% if (nominal._id.toString() === vNominal._id.toString()) { %>
+                              selected
+                            <% } %>
+                          <% }) %>
+                        >
+                          <%= nominal.coinName %>: <%= nominal.coinQty %>
+                        </option>
+                      <% }) %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="thumbnail">Upload Gambar</label>
+                  <input type="file" id="thumbnail" name="thumbnail" class="form-control-file mb-2">
+                  <div class="img-thumbnail position-relative w-100 col-12 col-sm-4">
+                    <% if (voucher.thumbnail) { %>
+                      <img 
+                        src="/uploads/<%= voucher.thumbnail %>"
+                        alt="Gambar <%= voucher.thumbnail.split('.')[0] %>"
+                        id="preview" class="w-100"
+                      >
+                    <% } else { %>
+                      <img 
+                        src="/images/placeholder.jpg"
+                        alt="Gambar placeholder"
+                        id="preview" class="w-100"
+                      >
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<%- include('../../partials/footer'); %>
+<%- include('../../partials/js'); %>
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#preview').attr('src', e.target.result);
+        $('#preview').attr('width', '15%');
+        $('#preview').attr('height', '15%');
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $('#thumbnail').change(function () {
+    readURL(this);
+    $('.preview-wrapper').css('display', 'none');
+  });
+</script>
