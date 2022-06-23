@@ -10,7 +10,9 @@ const {
   deleteCategoryHandler,
 } = require('./controller');
 
-/* GET home page. */
+const { isLogin } = require('../../middleware/authMiddleware');
+
+router.use(isLogin);
 router.get('/', index);
 router.get('/create', createCategoryView);
 router.post('/create', createCategoryHandler);

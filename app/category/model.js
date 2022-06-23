@@ -5,6 +5,6 @@ const categorySchema = mongoose.Schema({
     type: String,
     require: [true, 'Nama kategori tidak boleh kosong'],
   },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Category', categorySchema);

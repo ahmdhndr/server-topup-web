@@ -8,6 +8,7 @@ const config = require('../../config');
 module.exports = {
   index: async (req, res) => {
     try {
+      const { user } = req.session;
       const alertMessage = req.flash('alertMessage');
       const alertStatus = req.flash('alertStatus');
 
@@ -16,6 +17,8 @@ module.exports = {
         .populate('category')
         .populate('nominals');
       res.render('admin/voucher/view_voucher', {
+        title: 'Top Up Web | Halaman Voucher',
+        name: user.name,
         voucher,
         alert,
       });
@@ -27,9 +30,15 @@ module.exports = {
   },
   createVoucherView: async (req, res) => {
     try {
+      const { user } = req.session;
       const category = await Category.find();
       const nominals = await Nominal.find();
-      res.render('admin/voucher/create', { category, nominals });
+      res.render('admin/voucher/create', {
+        title: 'Top Up Web | Tambah Data Voucher',
+        name: user.name,
+        category,
+        nominals,
+      });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
@@ -93,6 +102,7 @@ module.exports = {
   },
   editVoucherView: async (req, res) => {
     try {
+      const { user } = req.session;
       const { id } = req.params;
       const category = await Category.find();
       const nominals = await Nominal.find();
@@ -100,6 +110,8 @@ module.exports = {
         .populate('category')
         .populate('nominals');
       res.render('admin/voucher/edit', {
+        title: 'Top Up Web | Ubah Data Voucher',
+        name: user.name,
         voucher,
         category,
         nominals,

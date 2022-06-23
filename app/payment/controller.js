@@ -4,6 +4,7 @@ const Bank = require('../bank/model');
 module.exports = {
   index: async (req, res) => {
     try {
+      const { user } = req.session;
       const alertMessage = req.flash('alertMessage');
       const alertStatus = req.flash('alertStatus');
       const alert = { message: alertMessage, status: alertStatus };
@@ -11,6 +12,8 @@ module.exports = {
       const payment = await Payment.find().populate('banks');
 
       res.render('admin/payment/view_payment', {
+        title: 'Top Up Web | Halaman Pembayaran',
+        name: user.name,
         payment,
         alert,
       });
@@ -22,8 +25,13 @@ module.exports = {
   },
   createPaymentView: async (req, res) => {
     try {
+      const { user } = req.session;
       const banks = await Bank.find();
-      res.render('admin/payment/create', { banks });
+      res.render('admin/payment/create', {
+        title: 'Top Up Web | Tambah Data Pembayaran',
+        name: user.name,
+        banks,
+      });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
@@ -48,10 +56,13 @@ module.exports = {
   },
   editPaymentView: async (req, res) => {
     try {
+      const { user } = req.session;
       const { id } = req.params;
       const banks = await Bank.find();
       const payment = await Payment.findById({ _id: id }).populate('banks');
       res.render('admin/payment/edit', {
+        title: 'Top Up Web | Ubah Data Pembayaran',
+        name: user.name,
         payment,
         banks,
       });

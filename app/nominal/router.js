@@ -10,6 +10,9 @@ const {
   deleteNominalHandler,
 } = require('./controller');
 
+const { isLogin } = require('../../middleware/authMiddleware');
+
+router.use(isLogin);
 router.get('/', index);
 router.get('/create', createNominalView);
 router.post('/create', createNominalHandler);

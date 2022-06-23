@@ -3,12 +3,15 @@ const Bank = require('./model');
 module.exports = {
   index: async (req, res) => {
     try {
+      const { user } = req.session;
       const alertMessage = req.flash('alertMessage');
       const alertStatus = req.flash('alertStatus');
 
       const alert = { message: alertMessage, status: alertStatus };
       const bank = await Bank.find();
       res.render('admin/bank/view_bank', {
+        title: 'Top Up Web | Halaman Bank',
+        name: user.name,
         bank,
         alert,
       });
@@ -20,7 +23,11 @@ module.exports = {
   },
   createBankView: async (req, res) => {
     try {
-      res.render('admin/bank/create');
+      const { user } = req.session;
+      res.render('admin/bank/create', {
+        title: 'Top Up Web | Tambah Data Bank',
+        name: user.name,
+      });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
@@ -45,9 +52,12 @@ module.exports = {
   },
   editBankView: async (req, res) => {
     try {
+      const { user } = req.session;
       const { id } = req.params;
       const bank = await Bank.findById({ _id: id });
       res.render('admin/bank/edit', {
+        title: 'Top Up Web | Ubah Data Bank',
+        name: user.name,
         bank,
       });
     } catch (error) {

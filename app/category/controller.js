@@ -3,12 +3,15 @@ const Category = require('./model');
 module.exports = {
   index: async (req, res) => {
     try {
+      const { user } = req.session;
       const alertMessage = req.flash('alertMessage');
       const alertStatus = req.flash('alertStatus');
 
       const alert = { message: alertMessage, status: alertStatus };
       const category = await Category.find();
       res.render('admin/category/view_category', {
+        title: 'Top Up Web | Halaman Kategori',
+        name: user.name,
         category,
         alert,
       });
@@ -20,7 +23,11 @@ module.exports = {
   },
   createCategoryView: async (req, res) => {
     try {
-      res.render('admin/category/create');
+      const { user } = req.session;
+      res.render('admin/category/create', {
+        title: 'Top Up Web | Tambah Data Kategori',
+        name: user.name,
+      });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
@@ -45,9 +52,12 @@ module.exports = {
   },
   editCategoryView: async (req, res) => {
     try {
+      const { user } = req.session;
       const { id } = req.params;
       const category = await Category.findById({ _id: id });
       res.render('admin/category/edit', {
+        title: 'Top Up Web | Ubah Data Kategori',
+        name: user.name,
         category,
       });
     } catch (error) {

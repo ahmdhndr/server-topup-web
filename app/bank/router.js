@@ -10,6 +10,9 @@ const {
   deleteBankHandler,
 } = require('./controller');
 
+const { isLogin } = require('../../middleware/authMiddleware');
+
+router.use(isLogin);
 router.get('/', index);
 router.get('/create', createBankView);
 router.post('/create', createBankHandler);

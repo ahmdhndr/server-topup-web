@@ -3,12 +3,15 @@ const Nominal = require('./model');
 module.exports = {
   index: async (req, res) => {
     try {
+      const { user } = req.session;
       const alertMessage = req.flash('alertMessage');
       const alertStatus = req.flash('alertStatus');
 
       const alert = { message: alertMessage, status: alertStatus };
       const nominal = await Nominal.find();
       res.render('admin/nominal/view_nominal', {
+        title: 'Top Up Web | Halaman Nominal',
+        name: user.name,
         nominal,
         alert,
       });
@@ -20,7 +23,12 @@ module.exports = {
   },
   createNominalView: async (req, res) => {
     try {
-      res.render('admin/nominal/create');
+      const { user } = req.session;
+
+      res.render('admin/nominal/create', {
+        title: 'Top Up Web | Tambah Data Nominal',
+        name: user.name,
+      });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
@@ -45,9 +53,12 @@ module.exports = {
   },
   editNominalView: async (req, res) => {
     try {
+      const { user } = req.session;
       const { id } = req.params;
       const nominal = await Nominal.findById({ _id: id });
       res.render('admin/nominal/edit', {
+        title: 'Top Up Web | Ubah Data Nominal',
+        name: user.name,
         nominal,
       });
     } catch (error) {

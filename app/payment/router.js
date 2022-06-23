@@ -11,6 +11,9 @@ const {
   updateStatusPaymentHandler,
 } = require('./controller');
 
+const { isLogin } = require('../../middleware/authMiddleware');
+
+router.use(isLogin);
 router.get('/', index);
 router.get('/create', createPaymentView);
 router.post('/create', createPaymentHandler);

@@ -13,6 +13,6 @@ const bankSchema = mongoose.Schema({
     type: Number,
     require: [true, 'Nomor rekening tidak boleh kosong'],
   },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Bank', bankSchema);
