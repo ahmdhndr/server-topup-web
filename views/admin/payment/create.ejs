@@ -47,7 +47,7 @@
                       data-placeholder="Pilih Bank">
                       <% banks.forEach((bank)=> { %>
                         <option value="<%= bank._id %>">
-                          <%= bank.bankName %> - <%= bank.accountNumb %> (<%= bank.ownerName %>)
+                          <%= bank.bankName %> - <%= bank.accountNumb %> (<%= bank.name %>)
                         </option>
                         <% }) %>
                     </select>

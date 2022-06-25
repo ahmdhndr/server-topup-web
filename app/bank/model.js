@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const bankSchema = mongoose.Schema({
-  ownerName: {
+  name: {
     type: String,
     require: [true, 'Nama pemilik tidak boleh kosong'],
   },

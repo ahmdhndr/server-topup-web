@@ -19,7 +19,7 @@ module.exports = {
       });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
-      req.flash('alertStatus', 'success');
+      req.flash('alertStatus', 'danger');
       res.redirect('/payment');
     }
   },

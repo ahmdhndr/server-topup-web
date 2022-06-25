@@ -19,8 +19,8 @@
         </td>
         <td class="align-middle">
           <% payment[i].banks.forEach((bank) => { %>
-            <span class="badge badge-warning" data-toggle="tooltip" data-html="true" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>">
-              <%= bank.bankName %> - <%= bank.accountNumb %> (<%= bank.ownerName %>)
+            <span class="badge badge-warning" data-toggle="tooltip" data-html="true" title="<%= bank.accountNumb %> (<%= bank.name %>)">
+              <%= bank.bankName %>
             </span>
           <% }) %>
         </td>

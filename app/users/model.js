@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema({
   },
   phoneNumber: {
     type: String,
-    require: [true, 'Nomor telepon harus diisi'],
+    require: [true, 'Nomor telepon tidak boleh kosong'],
   },
   password: {
     type: String,
