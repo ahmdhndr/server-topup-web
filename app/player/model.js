@@ -18,8 +18,8 @@ const playerSchema = mongoose.Schema({
   username: {
     type: String,
     require: [true, 'Username tidak boleh kosong'],
-    maxLength: [13, 'Panjang username harus diantara 9 - 13 karakter'],
-    minLength: [9, 'Panjang username harus diantara 9 - 13 karakter'],
+    maxLength: [13, 'Panjang username harus diantara 3 - 13 karakter'],
+    minLength: [3, 'Panjang username harus diantara 3 - 13 karakter'],
   },
   password: {
     type: String,

@@ -14,7 +14,8 @@ module.exports = {
       const userExists = await Player.findOne({ email });
       if (userExists) {
         res.status(400).json({
-          message: 'Akun telah digunakan',
+          error: 1,
+          message: 'Alamat email telah digunakan',
         });
       }
 
