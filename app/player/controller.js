@@ -211,7 +211,11 @@ module.exports = {
         .populate('category')
         .sort({ updatedAt: -1 });
 
-      res.status(200).json({ data: history, count });
+      res.status(200).json({
+        data: {
+          history, count,
+        },
+      });
     } catch (error) {
       res.status(500).json({
         message: error.message || 'Terjadi kesalahan pada server',
