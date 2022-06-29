@@ -84,7 +84,7 @@ module.exports = {
       if (!bankRes) res.status(404).json({ message: 'Bank tidak ditemukan' });
 
       const tax = (10 / 100) * nominalRes._doc.price;
-      const value = +nominalRes._doc.price - +tax;
+      const value = +nominalRes._doc.price + +tax;
 
       const payload = {
         historyVoucherTopup: {

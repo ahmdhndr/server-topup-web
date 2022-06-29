@@ -29,7 +29,7 @@ module.exports = {
       next();
     } catch (err) {
       res.status(401).json({
-        error: 'Anda tidak diijinkan mengakses ini!',
+        message: 'Anda tidak diijinkan mengakses ini!',
       });
     }
   },
