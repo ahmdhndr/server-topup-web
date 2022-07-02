@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
@@ -34,7 +35,6 @@ module.exports = {
           try {
             const player = new Player({
               ...payload,
-              email,
               avatar: filename,
             });
 
@@ -42,41 +42,44 @@ module.exports = {
 
             delete player._doc.password;
             res.status(201).json({
-              data: player,
+              data: {
+                player,
+              },
             });
-          } catch (err) {
-            if (err && err.message === 'ValidationError') {
-              res.status(422).json({
+          } catch (error) {
+            if (error && error.name === 'ValidationError') {
+              return res.status(422).json({
                 error: 1,
-                message: err.message,
-                fields: err.errors,
+                message: error.message,
+                fields: error.errors,
               });
             }
-            next(err);
+            next(error);
           }
         });
       } else {
         const player = new Player({
           ...payload,
-          email,
         });
 
         await player.save();
 
         delete player._doc.password;
         res.status(201).json({
-          data: player,
+          data: {
+            player,
+          },
         });
       }
-    } catch (err) {
-      if (err && err.message === 'ValidationError') {
-        res.status(422).json({
+    } catch (error) {
+      if (error && error.name === 'ValidationError') {
+        return res.status(422).json({
           error: 1,
-          message: err.message,
-          fields: err.errors,
+          message: error.message,
+          fields: error.errors,
         });
       }
-      next(err);
+      next(error);
     }
   },
   signin: async (req, res, next) => {

@@ -160,8 +160,10 @@ module.exports = {
       ]);
 
       res.status(200).json({
-        data: transaction,
-        total: total.length ? total[0].value : 0,
+        data: {
+          transaction,
+          total: total.length ? total[0].value : 0,
+        },
       });
     } catch (error) {
       console.error(error.message);
